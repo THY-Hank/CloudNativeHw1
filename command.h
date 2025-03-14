@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 #include<sstream>
-#include<map>
+#include<vector>
 using namespace std;
 enum class OpCode {
     REGISTER,
@@ -9,14 +9,18 @@ enum class OpCode {
     GET_LISTING,
     DELETE_LISTING,
     GET_CATEGORY,
-    GET_TOP_CATEGORY
+    GET_TOP_CATEGORY,
+    EXIT
 };
 OpCode str2code(string op);
 class command{
-    string line;
+    private:
+    string key,operation;
+    vector<string> parameter;
     public:
     command(string in){
-        line=in;
+        process(in);
     }
-    void process();
+    void process(string line);
+    void execute();
 };
