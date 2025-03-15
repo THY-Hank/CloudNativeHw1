@@ -1,5 +1,5 @@
 #include "command.h"
-#include "operation.h"
+#include "operation/operation.h"
 OpCode str2code(string op){
     if(op=="REGISTER") return OpCode::REGISTER;
     if(op=="CREATE_LISTING") return OpCode::CREATE_LISTING;
@@ -9,43 +9,52 @@ OpCode str2code(string op){
     if(op=="GET_TOP_CATEGORY") return OpCode::GET_TOP_CATEGORY;
     return OpCode::EXIT;
 }
+string lowercase(string in){
+    transform(in.begin(),in.end(),in.begin(),::tolower);
+    return in;
+}
 void command::process(string line){
-    string key,operation;
     istringstream iss(line);
     iss>>key;
     iss>>operation;
     string s;
     while(iss>>s){
+        string tmp;
+        while(s[0]=='\''&&s.back()!='\''){
+            iss>>tmp;
+            s+=tmp;
+        }
         parameter.push_back(s);
     }
 }
 void command::execute(){
     if(key!="#"){
+        cout<<key<<endl;
         cout<<"The input should have #\n";
         return;
     }
     switch (str2code(operation))
     {
         case OpCode::REGISTER:
-            REGISTER(parameter[0]);
+            //REGISTER(lowercase(parameter[0]));
             break;
         case OpCode::CREATE_LISTING:
-            CREATE_LISTING(parameter[0],parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
+            CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
             break;
         case OpCode::GET_LISTING:
-            GET_LISTING(parameter[0],stoi(parameter[1]));
+            //GET_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
             break;
         case OpCode::DELETE_LISTING:
-            DELETE_LISTING(parameter[0],stoi(parameter[1]));
+            //DELETE_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
             break;
         case OpCode::GET_CATEGORY:
-            GET_CATEGORY(parameter[0],parameter[1]);
+            //GET_CATEGORY(lowercase(parameter[0]),parameter[1]);
             break;
         case OpCode::GET_TOP_CATEGORY:
-            GET_TOP_CATEGORY(parameter[0]);
+            //GET_TOP_CATEGORY(lowercase(parameter[0]));
             break;
         case OpCode::EXIT:
-            EXIT();
+            //EXIT();
             break;
         default:
             cout<<"Wrong command!\n";

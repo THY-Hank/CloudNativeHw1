@@ -2,6 +2,8 @@
 #include<string>
 #include<sstream>
 #include<vector>
+#include<cctype>
+#include<algorithm>
 using namespace std;
 enum class OpCode {
     REGISTER,
@@ -12,6 +14,7 @@ enum class OpCode {
     GET_TOP_CATEGORY,
     EXIT
 };
+string lowercase(string in);
 OpCode str2code(string op);
 class command{
     private:
