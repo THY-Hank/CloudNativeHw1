@@ -24,6 +24,10 @@ void command::process(string line){
             iss>>tmp;
             s+=tmp;
         }
+        if(s[0]=='\''){
+            s.pop_back();
+            s=s.substr(1);
+        }
         parameter.push_back(s);
     }
 }
@@ -36,10 +40,10 @@ void command::execute(){
     switch (str2code(operation))
     {
         case OpCode::REGISTER:
-            //REGISTER(lowercase(parameter[0]));
+            REGISTER(lowercase(parameter[0]));
             break;
         case OpCode::CREATE_LISTING:
-            CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
+            //CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
             break;
         case OpCode::GET_LISTING:
             //GET_LISTING(lowercase(parameter[0]),stoi(parameter[1]));

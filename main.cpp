@@ -1,8 +1,9 @@
 
 #include "command.h"
+#include "operation/dataoperation/dataoperation.h"
 using namespace std;
 int main(){
-    
+    initialize();
     while(true){
         string line;
         getline(cin,line);
