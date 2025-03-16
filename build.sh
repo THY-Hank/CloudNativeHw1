@@ -1,19 +1,37 @@
 #!/bin/bash
-Target="Hw1"
+Target="Hw1_r13922141_cli_app"
+build_dir="r13922141_cli_app/build"
+mkdir -p "$build_dir"
 compiler="g++"
 warning="-Wall -Wextra -std=c++14"
-OBJ="main.o command.o initialize.o register.o creating_list.o create_user.o check_user.o create_item.o get_new_id.o"
+m_src="r13922141_cli_app"
+op_src="r13922141_cli_app/operation"
+data_src="r13922141_cli_app/operation/dataoperation"
+main=""
+for file in "$m_src"/*.cpp; do
+    main+="$build_dir/$(basename "${file%.cpp}.o") "
+done
+operation=""
+for file in "$op_src"/*.cpp; do
+    operation+="$build_dir/$(basename "${file%.cpp}.o") "
+done
+data=""
+for file in "$data_src"/*.cpp; do
+    data+="$build_dir/$(basename "${file%.cpp}.o") "
+done
+OBJ="$main$operation$data"
 rm -f $OBJ $Target
-echo "Comiling...It's normal to show warning since I do the linking after all comiling"
-$compiler $warning -c main.cpp main.o
-$compiler $warning -c command.cpp command.o
-$compiler $warning -c operation/dataoperation/initialize.cpp initialize.o
-$compiler $warning -c operation/dataoperation/create_user.cpp create_user.o
-$compiler $warning -c operation/dataoperation/check_user.cpp check_user.o
-$compiler $warning -c operation/dataoperation/get_new_id.cpp get_new_id.o
-$compiler $warning -c operation/dataoperation/create_item.cpp create_item.o
-$compiler $warning -c operation/register.cpp register.o
-$compiler $warning -c operation/creating_list.cpp creating_list.o
+echo "Comiling..."
+for file in "$m_src"/*.cpp; do
+    $compiler $warning -c "$file" -o "$build_dir/$(basename "${file%.cpp}.o")"
+done
+
+for file in "$op_src"/*.cpp; do
+    $compiler $warning -c "$file" -o "$build_dir/$(basename "${file%.cpp}.o")"
+done
+for file in "$data_src"/*.cpp; do
+    $compiler $warning -c "$file" -o "$build_dir/$(basename "${file%.cpp}.o")"
+done
 $compiler $warning $OBJ -L/operation/dataoperation/sqlite/sqlite3.lib -lsqlite3 -o $Target
 echo "Finish"
 rm -f $OBJ
