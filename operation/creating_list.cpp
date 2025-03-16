@@ -15,18 +15,13 @@ void CREATE_LISTING(string name,string title,string description,int price,string
         cout<<"Error - unknown user\n";
         return;
     }
-    User r=read_user(name);
-    string creation_time=gettime();
-    cout<<creation_time<<endl;
-    if(!check_user("Manager")){
-        User new_M("Manager");
-        write_user(new_M);
+    int id=get_new_id();
+    if(id==-1){
+        return;
     }
-    User M=read_user("Manager");
-    int id=M.get_id();
-    write_user(M);
-    Item newitem(id,title,description,creation_time,price,category);
-    r.List_add(newitem);
-    write_user(r);
+    string time=gettime();
+    if(create_item(name,id,title,description,time,price,category)==-1){
+        return;
+    }
     cout<<id<<endl;
 }

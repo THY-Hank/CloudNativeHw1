@@ -36,7 +36,7 @@ void initialize(){
         return ;
     }
     char sql_cmd2[200]="CREATE TABLE Item (id INTEGER PRIMARY KEY,user_name TEXT,\
-    title TEXT, time TEXT, category TEXT,FOREIGN key(user_name) REFERENCES User(user_name));";
+    title TEXT, description TEXT, time TEXT, price INTEGER, category TEXT,FOREIGN key(user_name) REFERENCES User(user_name));";
     db_check=sqlite3_exec(db,sql_cmd2,NULL,NULL,NULL);
     if(!dbcheck(db_check,SQLITE_OK)){
         return ;
