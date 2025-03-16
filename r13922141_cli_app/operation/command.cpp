@@ -1,5 +1,4 @@
 #include "command.h"
-#include "operation/operation.h"
 OpCode str2code(string op){
     if(op=="REGISTER") return OpCode::REGISTER;
     if(op=="CREATE_LISTING") return OpCode::CREATE_LISTING;
@@ -22,6 +21,7 @@ void command::process(string line){
         string tmp;
         while(s[0]=='\''&&s.back()!='\''){
             iss>>tmp;
+            s+=' ';
             s+=tmp;
         }
         if(s[0]=='\''){
@@ -43,22 +43,22 @@ void command::execute(){
             REGISTER(lowercase(parameter[0]));
             break;
         case OpCode::CREATE_LISTING:
-            //CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
+            CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
             break;
         case OpCode::GET_LISTING:
-            //GET_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
+            GET_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
             break;
         case OpCode::DELETE_LISTING:
-            //DELETE_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
+            DELETE_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
             break;
         case OpCode::GET_CATEGORY:
-            //GET_CATEGORY(lowercase(parameter[0]),parameter[1]);
+            GET_CATEGORY(lowercase(parameter[0]),parameter[1]);
             break;
         case OpCode::GET_TOP_CATEGORY:
-            //GET_TOP_CATEGORY(lowercase(parameter[0]));
+            GET_TOP_CATEGORY(lowercase(parameter[0]));
             break;
         case OpCode::EXIT:
-            //EXIT();
+            EXIT();
             break;
         default:
             cout<<"Wrong command!\n";

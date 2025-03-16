@@ -1,3 +1,3 @@
 #!/bin/bash
-Target="./Hw1"
+Target="./Hw1_r13922141_cli_app"
 $Target

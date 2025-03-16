@@ -1,9 +1,7 @@
-
-#include "command.h"
-#include "operation/dataoperation/dataoperation.h"
+#include "operation/command.h"
 using namespace std;
 int main(){
-    initialize();
+    initializer();
     while(true){
         string line;
         getline(cin,line);
