@@ -56,6 +56,11 @@ void initialize(){
         return ;
     }
     sqlite3_finalize(stmt);
+    string ccmd="CREATE TABLE Category (count INTEGER, name TEXT PRIMAER KEY);";
+    db_check=sqlite3_exec(db,ccmd.c_str(),NULL,NULL,NULL);
+    if(!dbcheck(db_check,SQLITE_OK)){
+        return ;
+    }
     db_check=sqlite3_close(db);
     if(db_check!=SQLITE_OK){
         cout<<"Database close failed\n";

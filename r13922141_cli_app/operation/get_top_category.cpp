@@ -4,9 +4,9 @@ void GET_TOP_CATEGORY(string name){
         cout<<"Error - unknown user"<<endl;
         return;
     }
-    Item* item=get_top("time");
-    if(item){
-        cout<<item->get_category()<<endl;
+    string cat=get_top();
+    if(cat!=""){
+        cout<<cat<<endl;
     }
     else{
         cout<<"Error - category not found"<<endl;

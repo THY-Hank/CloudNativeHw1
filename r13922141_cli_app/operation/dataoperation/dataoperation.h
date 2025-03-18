@@ -65,4 +65,5 @@ int create_item(string name,int id,string title,string description,string time,i
 Item* get_item(int id);
 int del_item(int id);
 vector<Item*> get_items(string condition,string input);
-Item* get_top(string condition);
+string get_top();
+int cat_action(string category,int add);
