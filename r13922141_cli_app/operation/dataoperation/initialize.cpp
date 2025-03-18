@@ -19,13 +19,13 @@ bool databaseExists(const std::string& dbFilePath) {
     }
 }
 
-void initialize(){
+void dataoperation::initialize(){
     if(databaseExists(databasename)){
         cout<<"Database is already exist\n";
         return;
     }
     sqlite3 *db=NULL;
-    int db_check=sqlite3_open(databasename,&db);
+    int db_check=sqlite3_open(databasename.c_str(),&db);
     if(db_check!=SQLITE_OK){
         cout<<"Database open failed\n";
         return ;

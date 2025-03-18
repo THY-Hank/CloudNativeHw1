@@ -10,22 +10,21 @@ string gettime(){
     oss<<put_time(&tm,"%Y-%m-%d %H:%M:%S");
     return oss.str();
 }
-void CREATE_LISTING(string name,string title,string description,int price,string category){
-    if(!check_user(name)){
-        cout<<"Error - unknown user\n";
-        return;
+string MainService::CREATE_LISTING(string name,string title,string description,int price,string category){
+    dataoperation dataservice;
+    if(!dataservice.check_user(name)){
+        return "Error - unknown user\n";
     }
-    int id=get_new_id();
+    int id=dataservice.get_new_id();
     if(id==-1){
-        return;
+        return "Error\n";
     }
     string time=gettime();
-    if(create_item(name,id,title,description,time,price,category)==-1){
-        return;
+    if(dataservice.create_item(name,id,title,description,time,price,category)==-1){
+        return "Error\n";
     }
-    if(cat_action(category,1)==-1){
-        cout<<"cat_action error"<<endl;
-        return;
+    if(dataservice.cat_action(category,1)==-1){
+        return "cat_action error\n";
     }
-    cout<<id<<endl;
+    return to_string(id)+"\n";
 }

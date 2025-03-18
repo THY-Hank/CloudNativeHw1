@@ -1,4 +1,5 @@
-#include "dataoperation/dataoperation.h"
-void initializer(){
-    initialize();
+#include "operation.h"
+void MainService::initializer(){
+    dataoperation dataservice;
+    dataservice.initialize();
 }

@@ -26,5 +26,5 @@ class command{
         process(in);
     }
     void process(string line);
-    void execute();
+    string execute();
 };

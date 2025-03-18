@@ -1,10 +1,12 @@
 #include "operation.h"
-void REGISTER(string name){
-    if(check_user(name)){
-        cout<<"Error - user already existing\n";
+string MainService::REGISTER(string name){
+    dataoperation dataservice;
+    if(dataservice.check_user(name)){
+        return "Error - user already existing\n";
     }
     else{
-        int e=create_user(name);
-        if(e!=-1) cout<<"Success\n";
+        int e=dataservice.create_user(name);
+        if(e!=-1) return "Success\n";
     }
+    return "NULL\n";
 }

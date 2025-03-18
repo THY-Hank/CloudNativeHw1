@@ -1,7 +1,7 @@
 #include "dataoperation.h"
-int del_item(int id){
+int dataoperation::del_item(int id){
     sqlite3 *db=NULL;
-    int db_check=sqlite3_open(databasename,&db);
+    int db_check=sqlite3_open(databasename.c_str(),&db);
     if(db_check!=SQLITE_OK){
         cout<<"Database open failed\n";
         return -1;

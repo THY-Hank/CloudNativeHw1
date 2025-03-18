@@ -30,32 +30,35 @@ void command::process(string line){
         parameter.push_back(s);
     }
 }
-void command::execute(){
+string command::execute(){
+    string res="";
+    MainService service;
     switch (str2code(operation))
     {
         case OpCode::REGISTER:
-            REGISTER(lowercase(parameter[0]));
+            res=service.REGISTER(lowercase(parameter[0]));
             break;
         case OpCode::CREATE_LISTING:
-            CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
+            res=service.CREATE_LISTING(lowercase(parameter[0]),parameter[1],parameter[2],stoi(parameter[3]),parameter[4]);
             break;
         case OpCode::GET_LISTING:
-            GET_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
+            res=service.GET_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
             break;
         case OpCode::DELETE_LISTING:
-            DELETE_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
+            res=service.DELETE_LISTING(lowercase(parameter[0]),stoi(parameter[1]));
             break;
         case OpCode::GET_CATEGORY:
-            GET_CATEGORY(lowercase(parameter[0]),parameter[1]);
+            res=service.GET_CATEGORY(lowercase(parameter[0]),parameter[1]);
             break;
         case OpCode::GET_TOP_CATEGORY:
-            GET_TOP_CATEGORY(lowercase(parameter[0]));
+            res=service.GET_TOP_CATEGORY(lowercase(parameter[0]));
             break;
         case OpCode::EXIT:
-            EXIT();
+            service.EXIT();
             break;
         default:
-            cout<<"Wrong command!\n";
+            res="Wrong command!\n";
             break;
     }
+    return res;
 }

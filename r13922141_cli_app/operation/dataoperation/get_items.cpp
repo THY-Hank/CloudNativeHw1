@@ -1,8 +1,8 @@
 #include "dataoperation.h"
-vector<Item*> get_items(string condition,string input){
+vector<Item*> dataoperation::get_items(string condition,string input){
     sqlite3 *db=NULL;
     vector<Item*> res;
-    int db_check=sqlite3_open(databasename,&db);
+    int db_check=sqlite3_open(databasename.c_str(),&db);
     if(db_check!=SQLITE_OK){
         cout<<"Database open failed\n";
         return res;

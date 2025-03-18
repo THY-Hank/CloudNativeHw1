@@ -1,7 +1,7 @@
 #include "dataoperation.h"
-int cat_action(string category,int add){
+int dataoperation::cat_action(string category,int add){
     sqlite3 *db=NULL;
-    int db_check=sqlite3_open(databasename,&db);
+    int db_check=sqlite3_open(databasename.c_str(),&db);
     if(db_check!=SQLITE_OK){
         cout<<"Database open failed\n";
         return -1;

@@ -1,4 +1,4 @@
 #include "operation.h"
-void EXIT(){
+void MainService::EXIT(){
     exit(0);
 }

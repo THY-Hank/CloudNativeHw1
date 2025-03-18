@@ -1,8 +1,8 @@
 #include "dataoperation.h"
-vector<string> get_top(){
+vector<string> dataoperation::get_top(){
     sqlite3 *db=NULL;
     vector<string> res;
-    int db_check=sqlite3_open(databasename,&db);
+    int db_check=sqlite3_open(databasename.c_str(),&db);
     if(db_check!=SQLITE_OK){
         res.push_back("Database open failed\n");
         return res;

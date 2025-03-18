@@ -1,8 +1,8 @@
 #include "dataoperation.h"
-Item* get_item(int id){
+Item* dataoperation::get_item(int id){
     sqlite3 *db=NULL;
     Item* res=NULL;
-    int db_check=sqlite3_open(databasename,&db);
+    int db_check=sqlite3_open(databasename.c_str(),&db);
     if(db_check!=SQLITE_OK){
         cout<<"Database open failed\n";
         return res;

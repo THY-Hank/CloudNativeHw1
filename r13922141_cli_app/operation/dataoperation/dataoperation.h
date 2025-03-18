@@ -4,7 +4,6 @@
 #include<vector>
 #include<sqlite3.h>
 using namespace std;
-#define databasename "database.db"
 class Item{
     int id,price;
     string user,title,description,time,category;
@@ -57,13 +56,17 @@ class User{
     string name;
     vector<Item> Listings;
 };
-int create_user(string name);
-bool check_user(string name);
-void initialize();
-int get_new_id();
-int create_item(string name,int id,string title,string description,string time,int price,string category);
-Item* get_item(int id);
-int del_item(int id);
-vector<Item*> get_items(string condition,string input);
-vector<string> get_top();
-int cat_action(string category,int add);
+class dataoperation{
+    string databasename="database.db";
+    public:
+    int create_user(string name);
+    bool check_user(string name);
+    void initialize();
+    int get_new_id();
+    int create_item(string name,int id,string title,string description,string time,int price,string category);
+    Item* get_item(int id);
+    int del_item(int id);
+    vector<Item*> get_items(string condition,string input);
+    vector<string> get_top();
+    int cat_action(string category,int add);
+};
