@@ -14,7 +14,6 @@ string lowercase(string in){
 }
 void command::process(string line){
     istringstream iss(line);
-    iss>>key;
     iss>>operation;
     string s;
     while(iss>>s){
@@ -32,11 +31,6 @@ void command::process(string line){
     }
 }
 void command::execute(){
-    if(key!="#"){
-        cout<<key<<endl;
-        cout<<"The input should have #\n";
-        return;
-    }
     switch (str2code(operation))
     {
         case OpCode::REGISTER:

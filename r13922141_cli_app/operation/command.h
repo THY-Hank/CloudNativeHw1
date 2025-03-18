@@ -19,7 +19,7 @@ string lowercase(string in);
 OpCode str2code(string op);
 class command{
     private:
-    string key,operation;
+    string operation;
     vector<string> parameter;
     public:
     command(string in){
