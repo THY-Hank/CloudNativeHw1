@@ -45,6 +45,20 @@ int cat_action(string category,int add){
         return -1;
     }
     sqlite3_finalize(stmtf);
+    if(count+add==0){
+        string sql_cmd2="DELETE FROM Category WHERE name=?";
+        sqlite3_stmt *stmu;
+        sqlite3_prepare_v2(db,sql_cmd2.c_str(),-1,&stmu,NULL);
+        sqlite3_bind_text(stmu,1,category.c_str(),-1,SQLITE_TRANSIENT);
+        db_check=sqlite3_step(stmu);
+        sqlite3_finalize(stmu);
+        db_check=sqlite3_close(db);
+        if(db_check!=SQLITE_OK){
+            cout<<"Database close failed\n";
+            return -1;
+        }
+        return 0;
+    }
     string sql_cmd2="UPDATE Category SET count=? WHERE name=?;";
     sqlite3_stmt *stmu;
     sqlite3_prepare_v2(db,sql_cmd2.c_str(),-1,&stmu,NULL);
